@@ -1,0 +1,30 @@
+/* Font */
+
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* Style footer */
+
+footer {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 9px;
+  font-family: "Press Start 2P", cursive;
+  background-color: #2c98eb5e;
+  padding: 5px;
+  clear: both;
+}
+
+.insta {
+  font-size: 15px;
+  margin-left: 5px;
+  text-decoration: none;
+  padding-top: 5px;
+}
+
+.linkedin {
+  font-size: 15px;
+  text-decoration: none;
+  padding-top: 5px;
+}

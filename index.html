@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app</title>
+    <script src="https://kit.fontawesome.com/91711b3836.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="Style/week_style.css">
+    <link rel="stylesheet" href="Style/main_style.css">
+    <link rel="stylesheet" href="Style/footer_style.css">
+
+
+</head>
+
+<body>
+    <div class=" box_info">
+
+        <form id="city_form">
+            <input type="text" class="enter" placeholder="Enter a city" id="user_city">
+            <i class="fa-solid fa-pencil" id="pencil"></i>
+            <i class="fa-solid fa-location-dot" id="loc_dot"></i>
+        </form>
+
+
+        <div class="main_info">
+            <div class="day_temp">
+                <span id="date_time"> Today 14h00 </span>
+                <i class="fa-regular fa-clock" style="color: #dce1ea;"></i>
+                <br />
+                <span class="weather_day"> Sun </span>
+            </div>
+
+
+            <div class="container">
+                <h1 class="city">
+                    Porto
+                </h1>
+                <h2 class="current_temp">
+                    22
+                </h2>
+                <div class="row squares">
+                    <div class="celsius col">
+                        <a id="convert_F_C" href="#">
+                            ºC
+                        </a>
+                    </div>
+                    <div class="fahrenheit col">
+                        <a id="convert_C_F" href="#">
+                            ºF
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="precipitation_wind">
+                <i class="fa-solid fa-droplet" style="color: #f0f8ff;"></i>
+                <span class="humidity">
+
+                </span>
+                <br />
+                <i class="fa-solid fa-wind" style="color: #f0f8ff;"></i>
+                <span class="wind">
+
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Strings images -->
+
+    <div class="strings">
+        <img src="img/string_1.png" alt="string" class="string-1">
+        <img src="img/string_2.png" alt="string" class="string-2">
+        <img src="img/string_3.png" alt="string" class="string-3">
+        <img src="img/string_4.png" alt="string" class="string-4">
+        <img src="img/string_5.png" alt="string" class="string-5">
+    </div>
+
+    <!-- Days of the week and temperatures -->
+
+    <div>
+        <div class="week-1">
+            <span class="days">
+                Mon
+            </span>
+            <br />
+            22ºC
+            <br />
+            <img src="img/rain.png" alt="rain" width="50">
+        </div>
+        <div class="week-2">
+            <span class="days">
+                Tue
+            </span>
+            <br />
+            19ºC
+            <br />
+            <img src="img/cloud_sun.png" alt="cloud_sun" width="50">
+        </div>
+        <div class="week-3">
+            <span class="days">
+                Wed
+            </span>
+            <br />
+            20ºC
+            <br />
+            <img src="img/sun.png" alt="sun" width="57">
+        </div>
+        <div class="week-4">
+            <span class="days">
+                Thu
+            </span>
+            <br />
+            18ºC
+            <br />
+            <img src="img/storm.png" alt="storm" width="50">
+        </div>
+        <div class="week-5">
+            <div class="days">
+                Fri
+            </div>
+            <br />
+            21ºC
+            <br />
+            <img src="img/cloud_sun.png" alt="cloud_sun" width="50">
+        </div>
+    </div>
+    </div>
+
+
+    <footer>
+        <span class="coded"> Coded by Ana Guerreiro</span>
+        <br>
+        <a href="https://www.linkedin.com/in/ana-luis-guerreiro/" target=”_blank”>
+            <i class="fa-brands fa-linkedin linkedin" style="color: #ffffff;"></i>
+        </a>
+        <a href="https://www.instagram.com/ana__mix/" target=”_blank”>
+            <i class="fa-brands fa-instagram insta" style="color: #ffffff;"></i>
+        </a>
+    </footer>
+</body>
+<script src="src/java.js"></script>
+
+
+</html>
