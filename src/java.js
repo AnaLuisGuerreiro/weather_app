@@ -20,6 +20,26 @@ function currentDate(date) {
   dateTime.innerHTML = `${day}, ${hour}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElements = document.querySelectorAll(".forecast");
+
+  let days = ["Thu", "Mon", "Sat", "Sun", "Wed"];
+
+  forecastElements.forEach((element, index) => {
+    let forecastHTML = `
+          <span class="days">${days[index]}</span>
+          <br />
+          <span class="weather_max"> 19ºC </span>
+          <span class="weather_min"> 13ºC </span>
+          <br />
+          <img src="img/cloud_sun.png" alt="cloud_sun" width="50">
+        </div>
+      `;
+
+    element.innerHTML = forecastHTML;
+  });
+}
+
 // Form search city
 function citySearch(event) {
   event.preventDefault();
@@ -32,6 +52,48 @@ function citySearch(event) {
   city.innerHTML = cityName;
 }
 
+function searchCity(city) {
+  // Api and real data
+  let urlBegin = "https://api.shecodes.io/weather/v1/current?";
+  let units = "metric";
+  let apiKey = "37ao80323cfe0b171ed40af823227b0t";
+  let api = `${urlBegin}query=${city}&units=${units}&key=${apiKey}`;
+  axios.get(api).then(showRealTemp);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let userCity = document.querySelector("#user_city");
+  searchCity(userCity.value);
+}
+
+function showRealTemp(response) {
+  let description = response.data.condition.description;
+  let descriptionUpper =
+    description.charAt(0).toUpperCase() + description.slice(1).toLowerCase();
+
+  document.querySelector(".city").innerHTML = response.data.city;
+  document.querySelector(".current_temp").innerHTML = Math.round(
+    response.data.temperature.current
+  );
+  document.querySelector(".wind").innerHTML = `Wind: ${Math.round(
+    response.data.wind.speed
+  )} km/h`;
+  document.querySelector(
+    ".humidity"
+  ).innerHTML = `Humidity: ${response.data.temperature.humidity}%`;
+  document.querySelector(".weather_day").innerHTML = descriptionUpper;
+}
+
+// Current Position
+function showPosition(position) {
+  console.log(position.coords.latitude);
+  console.log(position.coords.longitude);
+}
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
 // Convertion Celsius to Fahrenheit / Fahrenheit to Celsius
 let currentTemp = document.querySelector(".current_temp");
 
@@ -60,50 +122,8 @@ btnCelsius.addEventListener("click", convertToCelsius);
 let btnFahrenheit = document.querySelector("#convert_C_F");
 btnFahrenheit.addEventListener("click", convertToFahrenheit);
 
-function searchCity(city) {
-  // Api and real data
-  let urlBegin = "https://api.openweathermap.org/data/2.5/weather?";
-  let units = "metric";
-  let apiKey = "6cbe98b15c1974d096f69842696bcf5b";
-  let api = `${urlBegin}q=${city}&units=${units}&appid=${apiKey}`;
-  axios.get(api).then(showRealTemp);
-}
-
-function handleSubmit(event) {
-  event.preventDefault();
-  let userCity = document.querySelector("#user_city");
-  searchCity(userCity.value);
-}
-
-function showRealTemp(response) {
-  let description = response.data.weather[0].description;
-  let descriptionUpper =
-    description.charAt(0).toUpperCase() + description.slice(1).toLowerCase();
-
-  document.querySelector(".city").innerHTML = response.data.name;
-  document.querySelector(".current_temp").innerHTML = Math.round(
-    response.data.main.temp
-  );
-  document.querySelector(".wind").innerHTML = `Wind: ${Math.round(
-    response.data.wind.speed
-  )} km/h`;
-  document.querySelector(
-    ".humidity"
-  ).innerHTML = `Humidity: ${response.data.main.humidity}%`;
-  document.querySelector(".weather_day").innerHTML = descriptionUpper;
-}
-
-// Current Position
-function showPosition(position) {
-  console.log(position.coords.latitude);
-  console.log(position.coords.longitude);
-}
-
-function getCurrentPosition() {
-  navigator.geolocation.getCurrentPosition(showPosition);
-}
-
 let locationDot = document.getElementById("loc_dot");
 locationDot.addEventListener("click", getCurrentPosition);
 
 searchCity("Porto");
+displayForecast();
