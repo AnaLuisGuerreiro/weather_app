@@ -110,16 +110,15 @@ let currentTemp = document.querySelector(".current_temp");
 
 function convertToFahrenheit(event) {
   event.preventDefault();
-  let formula = (celsiusTemperature * 9) / 5 + 32;
+  let formula = (currentTemp.innerHTML * 9) / 5 + 32;
 
-  document.querySelector("#current_temp").innerHTML = Math.round(formula);
+  currentTemp.innerHTML = Math.round(formula);
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
 
-  document.querySelector("#current_temp").innerHTML =
-    Math.round(celsiusTemperature);
+  currentTemp.innerHTML = celsiusTemperature;
 }
 
 let celsiusTemperature = null;
