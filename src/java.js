@@ -40,6 +40,35 @@ function displayForecast() {
   });
 }
 
+function showRealTemp(response) {
+  let description = response.data.condition.description;
+  let descriptionUpper =
+    description.charAt(0).toUpperCase() + description.slice(1).toLowerCase();
+  document.querySelector(".weather_day").innerHTML = descriptionUpper;
+  let celsiusTemperature = response.data.temperature.current;
+
+  document.querySelector(".city").innerHTML = response.data.city;
+  document.querySelector(".current_temp").innerHTML =
+    Math.round(celsiusTemperature);
+
+  document.querySelector(".wind").innerHTML = `Wind: ${Math.round(
+    response.data.wind.speed
+  )} km/h`;
+  document.querySelector(
+    ".humidity"
+  ).innerHTML = `Humidity: ${response.data.temperature.humidity}%`;
+
+  document
+    .querySelector("#icon")
+    .setAttribute(
+      "src",
+      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+    );
+  document
+    .querySelector("#icon")
+    .setAttribute("alt", response.data.condition.description);
+}
+
 // Form search city
 function citySearch(event) {
   event.preventDefault();
@@ -67,34 +96,6 @@ function handleSubmit(event) {
   searchCity(userCity.value);
 }
 
-function showRealTemp(response) {
-  let description = response.data.condition.description;
-  let descriptionUpper =
-    description.charAt(0).toUpperCase() + description.slice(1).toLowerCase();
-
-  document.querySelector(".city").innerHTML = response.data.city;
-  document.querySelector(".current_temp").innerHTML = Math.round(
-    response.data.temperature.current
-  );
-  document.querySelector(".wind").innerHTML = `Wind: ${Math.round(
-    response.data.wind.speed
-  )} km/h`;
-  document.querySelector(
-    ".humidity"
-  ).innerHTML = `Humidity: ${response.data.temperature.humidity}%`;
-  document.querySelector(".weather_day").innerHTML = descriptionUpper;
-
-  document
-    .querySelector("#icon")
-    .setAttribute(
-      "src",
-      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
-    );
-  document
-    .querySelector("#icon")
-    .setAttribute("alt", response.data.condition.description);
-}
-
 // Current Position
 function showPosition(position) {
   console.log(position.coords.latitude);
@@ -107,13 +108,21 @@ function getCurrentPosition() {
 // Convertion Celsius to Fahrenheit / Fahrenheit to Celsius
 let currentTemp = document.querySelector(".current_temp");
 
-function convertToFahrenheit() {
-  currentTemp.textContent = "72";
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let formula = (celsiusTemperature * 9) / 5 + 32;
+
+  document.querySelector("#current_temp").innerHTML = Math.round(formula);
 }
 
-function convertToCelsius() {
-  currentTemp.textContent = "22";
+function convertToCelsius(event) {
+  event.preventDefault();
+
+  document.querySelector("#current_temp").innerHTML =
+    Math.round(celsiusTemperature);
 }
+
+let celsiusTemperature = null;
 
 // Date
 currentDate(new Date());
@@ -126,12 +135,13 @@ let pencil = document.getElementById("pencil");
 pencil.addEventListener("click", citySearch);
 
 // Buttons event (Cº e Fº)
-let btnCelsius = document.querySelector("#convert_F_C");
-btnCelsius.addEventListener("click", convertToCelsius);
-
 let btnFahrenheit = document.querySelector("#convert_C_F");
 btnFahrenheit.addEventListener("click", convertToFahrenheit);
 
+let btnCelsius = document.querySelector("#convert_F_C");
+btnCelsius.addEventListener("click", convertToCelsius);
+
+// Dot button
 let locationDot = document.getElementById("loc_dot");
 locationDot.addEventListener("click", getCurrentPosition);
 
