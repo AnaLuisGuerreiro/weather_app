@@ -83,6 +83,16 @@ function showRealTemp(response) {
     ".humidity"
   ).innerHTML = `Humidity: ${response.data.temperature.humidity}%`;
   document.querySelector(".weather_day").innerHTML = descriptionUpper;
+
+  document
+    .querySelector("#icon")
+    .setAttribute(
+      "src",
+      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+    );
+  document
+    .querySelector("#icon")
+    .setAttribute("alt", response.data.condition.description);
 }
 
 // Current Position

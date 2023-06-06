@@ -71,17 +71,22 @@ h2 {
   width: 610px;
   padding: 10px 0 10px 0;
   background: linear-gradient(
-      to left,
-      rgba(44, 152, 235, 0.2) 10%,
-      rgba(44, 152, 235, 0.6),
-      rgba(44, 152, 235, 1)
-    ),
-    url(../img/sun_background1.jpg);
+    to left,
+    rgba(44, 152, 235, 0.2) 10%,
+    rgba(44, 152, 235, 0.6),
+    rgba(44, 152, 235, 1)
+  );
 }
 .main_info {
   margin-top: 0;
 }
 
+.icon_day {
+  position: absolute;
+  margin-left: -122px;
+  bottom: 628px;
+  width: 80px;
+}
 .day_temp {
   margin-right: 388px;
   margin-top: 20px;
@@ -94,13 +99,13 @@ h2 {
 .current_temp {
   font-size: 45px;
   margin-top: 14px;
-  margin-left: 210px;
+  margin-left: 234px;
   margin-bottom: 0;
 }
 
 .squares {
   position: fixed;
-  margin-left: 285px;
+  margin-left: 316px;
   top: 239px;
 }
 
