@@ -105,20 +105,21 @@ function showPosition(position) {
 function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
+
 // Convertion Celsius to Fahrenheit / Fahrenheit to Celsius
-let currentTemp = document.querySelector(".current_temp");
+let currentTemp = document.querySelector("#current_temp");
 
 function convertToFahrenheit(event) {
   event.preventDefault();
-  let formula = (currentTemp.innerHTML * 9) / 5 + 32;
+  let fahrenheitTemperature = (currentTemp.innerHTML * 9) / 5 + 32;
 
-  currentTemp.innerHTML = Math.round(formula);
+  currentTemp.innerHTML = Math.round(fahrenheitTemperature);
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
 
-  currentTemp.innerHTML = celsiusTemperature;
+  currentTemp.innerHTML = Math.round(celsiusTemperature);
 }
 
 let celsiusTemperature = null;
