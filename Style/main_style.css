@@ -13,7 +13,7 @@ body {
 }
 h1 {
   font-size: 53px;
-  margin: 0 0;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
@@ -113,29 +113,10 @@ h2 {
 }
 
 .celsius {
-  font-size: 14px;
-  margin-right: -17px;
+  font-size: 23px;
   margin-bottom: 30px;
   padding: 2px;
-  margin-left: 15px;
-  background-color: #1c47605e;
-  border-radius: 19px 0 0 2px;
-}
-
-.fahrenheit {
-  font-size: 14px;
-  border-left: 3px solid #000;
-  margin-bottom: 30px;
-  padding: 2px;
-  margin-left: 17px;
-  background-color: #1c47605e;
-  border-radius: 0 2px 19px 0;
-}
-
-.celsius:hover,
-.fahrenheit:hover {
-  transition: 0.2s ease-in-out;
-  background-color: #1c476093;
+  margin-left: 105px;
 }
 
 .precipitation_wind {
@@ -144,11 +125,5 @@ h2 {
   padding: 3px;
   border-radius: 325px 0 0 15px;
   text-align: right;
-  margin-top: 60px;
-}
-
-#convert_F_C,
-#convert_C_F {
-  text-decoration: none;
-  color: #f0f8ff;
+  margin-top: 26px;
 }
