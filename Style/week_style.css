@@ -82,3 +82,7 @@
 .weather_min {
   opacity: 0.8;
 }
+
+.days_icon {
+  margin-top: -5;
+}

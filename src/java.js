@@ -20,19 +20,34 @@ function currentDate(date) {
   dateTime.innerHTML = `${day}, ${hour}:${minutes}`;
 }
 
+function formatDays(time) {
+  let date = new Date(time * 1000);
+  let day = date.getDay();
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data);
   let forecastElements = document.querySelectorAll(".forecast");
 
-  let days = ["Thu", "Mon", "Sat", "Sun", "Wed"];
-
   forecastElements.forEach((element, index) => {
+    let data = response.data.daily[index];
     let forecastHTML = `
-          <span class="days">${days[index]}</span>
-          <span class="weather_max"> 19º |</span>
-          <span class="weather_min"> 13º </span>
+          <span class="days">${formatDays(data.time)}</span>
+          <span class="weather_max"> 
+          ${Math.round(data.temperature.maximum)}º 
+          |</span>
+          <span class="weather_min">
+           ${Math.round(data.temperature.minimum)}º
+          </span>
           <br />
-          <img src="img/cloud_sun.png" alt="cloud_sun" width="50">
+          <img 
+          src="${data.condition.icon_url}" 
+          alt="cloud_sun" 
+          width="60"
+          class="days_icon"
+          >
         </div>
       `;
 
