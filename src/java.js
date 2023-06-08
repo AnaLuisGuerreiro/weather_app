@@ -20,7 +20,8 @@ function currentDate(date) {
   dateTime.innerHTML = `${day}, ${hour}:${minutes}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
   let forecastElements = document.querySelectorAll(".forecast");
 
   let days = ["Thu", "Mon", "Sat", "Sun", "Wed"];
@@ -28,9 +29,8 @@ function displayForecast() {
   forecastElements.forEach((element, index) => {
     let forecastHTML = `
           <span class="days">${days[index]}</span>
-          <br />
-          <span class="weather_max"> 19ºC </span>
-          <span class="weather_min"> 13ºC </span>
+          <span class="weather_max"> 19º |</span>
+          <span class="weather_min"> 13º </span>
           <br />
           <img src="img/cloud_sun.png" alt="cloud_sun" width="50">
         </div>
@@ -38,6 +38,15 @@ function displayForecast() {
 
     element.innerHTML = forecastHTML;
   });
+}
+
+function getForecast(coordinates) {
+  let apiKey = "37ao80323cfe0b171ed40af823227b0t";
+  let apiUrl = `
+  https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric
+  `;
+
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function showRealTemp(response) {
@@ -67,6 +76,8 @@ function showRealTemp(response) {
   document
     .querySelector("#icon")
     .setAttribute("alt", response.data.condition.description);
+
+  getForecast(response.data.coordinates);
 }
 
 // Form search city
@@ -146,4 +157,3 @@ let locationDot = document.getElementById("loc_dot");
 locationDot.addEventListener("click", getCurrentPosition);
 
 searchCity("Porto");
-displayForecast();
