@@ -45,7 +45,7 @@ function showRealTemp(response) {
   let descriptionUpper =
     description.charAt(0).toUpperCase() + description.slice(1).toLowerCase();
   document.querySelector(".weather_day").innerHTML = descriptionUpper;
-  let celsiusTemperature = response.data.temperature.current;
+  celsiusTemperature = response.data.temperature.current;
 
   document.querySelector(".city").innerHTML = response.data.city;
   document.querySelector(".current_temp").innerHTML =
