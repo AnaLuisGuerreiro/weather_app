@@ -123,32 +123,22 @@ function handleSubmit(event) {
 }
 
 // Current Position
-function showPosition(position) {
-  console.log(position.coords.latitude);
-  console.log(position.coords.longitude);
-}
 
 function getCurrentPosition() {
-  navigator.geolocation.getCurrentPosition(showPosition);
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      const apiKey = "37ao80323cfe0b171ed40af823227b0t";
+
+      const apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${latitude}&lon=${longitude}&units=metric&key=${apiKey}`;
+
+      axios.get(apiUrl).then(showRealTemp);
+    });
+  } else {
+    alert("Geolocation is not supported by your browser.");
+  }
 }
-
-// Convertion Celsius to Fahrenheit / Fahrenheit to Celsius
-let currentTemp = document.querySelector("#current_temp");
-
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let fahrenheitTemperature = (currentTemp.innerHTML * 9) / 5 + 32;
-
-  currentTemp.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function convertToCelsius(event) {
-  event.preventDefault();
-
-  currentTemp.innerHTML = Math.round(celsiusTemperature);
-}
-
-let celsiusTemperature = null;
 
 // Date
 currentDate(new Date());
@@ -159,13 +149,6 @@ form.addEventListener("submit", handleSubmit);
 // Form event with pencil button
 let pencil = document.getElementById("pencil");
 pencil.addEventListener("click", citySearch);
-
-// Buttons event (Cº e Fº)
-let btnFahrenheit = document.querySelector("#convert_C_F");
-btnFahrenheit.addEventListener("click", convertToFahrenheit);
-
-let btnCelsius = document.querySelector("#convert_F_C");
-btnCelsius.addEventListener("click", convertToCelsius);
 
 // Dot button
 let locationDot = document.getElementById("loc_dot");
